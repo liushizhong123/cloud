@@ -25,14 +25,14 @@ public class OrderController {
     private RestTemplate restTemplate;
 
     @PostMapping("/consumer/payment/create")
-    public CommonResult<Payment> create(Payment payment){
+    public CommonResult create(Payment payment){
         log.info("********插入的数据：" + payment);
         //postForObject分别有三个参数：请求地址，请求参数，返回的对象类型
         return restTemplate.postForObject(PAYMENT_URL + "/payment/create", payment, CommonResult.class);
     }
 
     @GetMapping("/consumer/payment/get/{id}")
-    public CommonResult<Payment> getPayment(@PathVariable("id") Long id){
+    public CommonResult getPayment(@PathVariable("id") Long id){
         log.info("********查询的id：" + id);
         //getForObject两个参数：请求地址，返回的对象类型
         return restTemplate.getForObject(PAYMENT_URL + "/payment/get/" + id, CommonResult.class);

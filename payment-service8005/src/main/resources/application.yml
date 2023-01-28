@@ -1,0 +1,25 @@
+server:
+  port: 8005
+
+spring:
+  application:
+    name: payment-service
+  cloud:
+    consul:
+      port: 8500
+      host: 8.130.44.150
+      discovery:
+        service-name: ${spring.application.name}
+        health-check-interval: 3600s
+        heartbeat:
+          enabled: true # 打开心跳机制
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource # 数据源类型
+    driver-class-name: com.mysql.jdbc.Driver # mysql驱动
+    url: jdbc:mysql://localhost:3306/db2023?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: lsz123
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml # mapper文件所在位置
+  type-aliases-package: com.lsz.springcloud.entities # 实体类所在位置
